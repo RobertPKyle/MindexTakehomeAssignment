@@ -1,14 +1,22 @@
 package com.mindex.challenge.data;
 
 import java.util.List;
+import org.springframework.data.annotation.Id;
+import javax.persistence.OneToMany;
+
+import java.util.List;
 
 public class Employee {
+	@Id
     private String employeeId;
     private String firstName;
     private String lastName;
     private String position;
     private String department;
     private List<Employee> directReports;
+    
+    @OneToMany(mappedBy = "employee")
+    private List<Compensation> compensations;
 
     public Employee() {
     }
@@ -60,4 +68,13 @@ public class Employee {
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
     }
+    
+    public List<Compensation> getCompensations() {
+        return compensations;
+    }
+
+    public void setCompensations(List<Compensation> compensations) {
+        this.compensations = compensations;
+    }
+
 }
