@@ -16,6 +16,7 @@ public class ReportingStructureController {
     @Autowired
     private ReportingStructureService reportingStructureService;
 
+    // Gets the number of direct reports for a specific user
     @GetMapping("/reportingStructure/{employeeId}")
     public ReportingStructure getReportingStructure(@PathVariable String employeeId) {
         LOG.debug("Received reporting structure request for employeeId [{}]", employeeId);

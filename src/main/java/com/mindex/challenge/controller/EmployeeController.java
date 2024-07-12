@@ -22,13 +22,15 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    // Create an employee with a firstname, lastname, id, position, department and reports
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
         LOG.debug("Received employee create request for [{}]", employee);
   
         return employeeService.create(employee);
     }
-
+    
+    // Gets an employee information by employeeId
     @GetMapping("/employee/{id}")
     public Employee read(@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);
@@ -36,6 +38,7 @@ public class EmployeeController {
         return employeeService.read(id);
     }
 
+    // updates an employee information by employeeId
     @PutMapping("/employee/{id}")
     public Employee update(@PathVariable String id, @RequestBody Employee employee) {
         LOG.debug("Received employee create request for id [{}] and employee [{}]", id, employee);
@@ -44,6 +47,7 @@ public class EmployeeController {
         return employeeService.update(employee);
     }
     
+    // list all employees
     @GetMapping("/employees")
     public List<Employee> listAll() {
         LOG.debug("Received employee list all request");

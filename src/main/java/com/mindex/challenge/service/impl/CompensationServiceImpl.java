@@ -19,19 +19,30 @@ public class CompensationServiceImpl implements CompensationService {
 
     @Override
     public Compensation create(Compensation compensation) {
+        // Save the given compensation entity to the repository and return the saved entity
         return compensationRepository.save(compensation);
     }
 
     @Override
     public Compensation read(String employeeId) {
+        // Find the employee with the given employeeId from the repository
+        // If the employee is not found, throw a RuntimeException
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new RuntimeException("Invalid employeeId: " + employeeId));
+        
+        // Find and return the compensation associated with the found employee
         return compensationRepository.findByEmployee(employee);
     }
 
     @Override
     public Compensation update(String employeeId, Compensation compensation) {
+        // Find the employee with the given employeeId from the repository
+        // If the employee is not found, throw a RuntimeException
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new RuntimeException("Invalid employeeId: " + employeeId));
+        
+        // Set the found employee to the compensation entity
         compensation.setEmployee(employee);
+        
+        // Save the updated compensation entity to the repository and return the saved entity
         return compensationRepository.save(compensation);
     }
 }

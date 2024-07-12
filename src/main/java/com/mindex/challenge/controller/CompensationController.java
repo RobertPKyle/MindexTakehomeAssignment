@@ -14,13 +14,15 @@ public class CompensationController {
     @Autowired
     private CompensationService compensationService;
 
+    // Create a new compensation
     @PostMapping("/compensation")
     public Compensation create(@RequestBody Compensation compensation) {
         LOG.debug("Received compensation create request for [{}]", compensation);
 
         return compensationService.create(compensation);
     }
-
+    
+    // gets the compensation of an employee by employeeId
     @GetMapping("/compensation/{employeeId}")
     public Compensation read(@PathVariable String employeeId) {
         LOG.debug("Received compensation read request for employeeId [{}]", employeeId);
@@ -28,6 +30,7 @@ public class CompensationController {
         return compensationService.read(employeeId);
     }
 
+    // Takes in an employeeId and Compensation and updates the employee with the new compensation
     @PutMapping("/compensation/{employeeId}")
     public Compensation update(@PathVariable String employeeId, @RequestBody Compensation compensation) {
         LOG.debug("Received compensation update request for employeeId [{}] and compensation [{}]", employeeId, compensation);
